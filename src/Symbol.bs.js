@@ -19,6 +19,19 @@ function toString(symbol) {
   return $$String.make(1, toChar(symbol));
 }
 
+function verbPhrase(symbol) {
+  switch (symbol) {
+    case 0 : 
+        return "write a 0";
+    case 1 : 
+        return "write a 1";
+    case 2 : 
+        return "erase the head";
+    
+  }
+}
+
 exports.toChar = toChar;
 exports.toString = toString;
+exports.verbPhrase = verbPhrase;
 /* No side effect */

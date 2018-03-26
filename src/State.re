@@ -1,12 +1,15 @@
 type state = {
   name: string,
-  action: (Symbol.symbol) => action,
-  halt: bool,
-  message: option(string)
+  message: option(string),
+  action,
 }
-and action = {
+and action =
+  | Rule(Symbol.symbol => transition)
+  | Halt
+and transition = {
   write: Symbol.symbol,
   move: HeadMove.headMove,
-  next: state
+  next: state,
 };
 
+let toSentence = state => "todo";
