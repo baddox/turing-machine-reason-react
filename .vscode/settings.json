@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true,
+  "reason.format.width": 60,
+  "editor.rulers": [60]
+}
