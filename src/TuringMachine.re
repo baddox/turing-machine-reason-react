@@ -35,8 +35,19 @@ let toSentence = tm =>
         HeadMove.verbPhrase(move),
         statePhrase,
       ],
-    );
-  | State.Halt => "and halt"
+    )
+    ++ ".";
+  | State.Halt =>
+    "State:"
+    ++ tm.state.name
+    ++ (
+      switch (tm.state.message) {
+      | Some(message) =>
+        " halted with this message: " ++ message
+      | None => "halted with no message"
+      }
+    )
+    ++ "."
   };
 
 let toString = tm => {
@@ -44,11 +55,12 @@ let toString = tm => {
   String.concat("\n", lines);
 };
 
-let rec run = (tm: turingMachine) =>
+let rec run = (tm: turingMachine) => {
+  Js.log(toString(tm));
   switch (tm.state.action) {
   | State.Rule(_) =>
     let nextTm = next(tm);
-    Js.log(toString(nextTm));
     run(nextTm);
   | State.Halt => Js.log("halted in run")
   };
+};
